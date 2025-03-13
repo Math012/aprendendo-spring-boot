@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,73 +11,92 @@
     <div class="menu">
         <a href="/posts/index.html">Voltar</a>
     </div>
-    
+
     <h1 class="main-title-topic">Convertendo Objetos no Spring Boot com Lombok Builder</h1>
 
-    <p class="description-topic">Quando estamos trabalhando na construção de APIs, estamos constantemente enviando e recebendo dados e, de certa forma, expondo as entidades do projeto. Para evitar essa exposição, criamos as classes DTOs, que servem para transferir dados entre objetos. No entanto, precisamos lidar com uma questão: ao chamar funções que envolvem o banco de dados, é necessário salvar a entidade e não o DTO. Dessa forma, precisamos converter DTOs em entidades ou entidades em DTOs, o que pode ser um pouco trabalhoso dependendo do tamanho da aplicação ou da entidade.<br><br>
-        Pensando nisso, foi criada uma biblioteca chamada Lombok, que contém diversas funcionalidades. Uma delas é o "Builder", que facilita a conversão de objetos.
+    <p class="description-topic">Quando estamos trabalhando na construção de APIs, estamos constantemente enviando e
+        recebendo dados e, de certa forma, expondo as entidades do projeto. Para evitar essa exposição, criamos as
+        classes DTOs, que servem para transferir dados entre objetos. No entanto, precisamos lidar com uma questão: ao
+        chamar funções que envolvem o banco de dados, é necessário salvar a entidade e não o DTO. Dessa forma,
+        precisamos converter DTOs em entidades ou entidades em DTOs, o que pode ser um pouco trabalhoso dependendo do
+        tamanho da aplicação ou da entidade.<br><br>
+        Pensando nisso, foi criada uma biblioteca chamada Lombok, que contém diversas funcionalidades. Uma delas é o
+        "Builder", que facilita a conversão de objetos.
         <br><br>
         Para utilizar o Builder, precisamos adicionar a anotação @Builder na classe da entidade e do DTO.
         <br><br>
-        Importante: Não se esqueça de incluir as anotações @Getter e @Setter ou gerá-las manualmente na entidade e no DTO.
+        Importante: Não se esqueça de incluir as anotações @Getter e @Setter ou gerá-las manualmente na entidade e no
+        DTO.
     </p>
 
     <div class="image-topic">
-        <img src="/posts/postss/images/springConverter/anotationbuilder.png" alt="">
+        <img src="/postss/images/springConverter/anotationbuilder.png" alt="">
     </div>
 
     <h2 class="second-tittle">Convertendo um UsuarioDTO para a entidade Usuario.</h2>
 
     <p class="description-topic">
-        Para separar as responsabilidades, vamos criar uma classe chamada UsuarioConverter (utilizando o nome da entidade que queremos converter).
+        Para separar as responsabilidades, vamos criar uma classe chamada UsuarioConverter (utilizando o nome da
+        entidade que queremos converter).
         <br><br>
-        Criamos um método na classe UsuarioConverter. Para melhorar a compreensão, daremos a ele um nome descritivo: "public Usuario usuarioDTOParaUsuario(UsuarioDTO usuarioDTO)"<br> Esse método define que ao final retornaremos a entidade Usuario convertida a partir do UsuarioDTO, recebendo como parâmetro o objeto que será convertido.
+        Criamos um método na classe UsuarioConverter. Para melhorar a compreensão, daremos a ele um nome descritivo:
+        "public Usuario usuarioDTOParaUsuario(UsuarioDTO usuarioDTO)"<br> Esse método define que ao final retornaremos a
+        entidade Usuario convertida a partir do UsuarioDTO, recebendo como parâmetro o objeto que será convertido.
     </p>
 
     <div class="image-topic">
-        <img src="/posts/postss/images/springConverter/DTOparaEntidade.png" alt="">
+        <img src="/postss/images/springConverter/DTOparaEntidade.png" alt="">
     </div>
 
     <p class="description-topic">
-        A entidade Usuario possui duas listas de classes distintas que também precisam ser convertidas: Endereco e Telefone. Como estamos retornando a entidade Usuario, precisamos garantir que as listas de UsuarioDTO sejam convertidas para suas respectivas entidades.
+        A entidade Usuario possui duas listas de classes distintas que também precisam ser convertidas: Endereco e
+        Telefone. Como estamos retornando a entidade Usuario, precisamos garantir que as listas de UsuarioDTO sejam
+        convertidas para suas respectivas entidades.
     </p>
 
     <p class="description-topic">
-        Antes de transformar as listas, devemos realizar a conversão de EnderecoDTO e TelefoneDTO da mesma forma que fazemos para a entidade Usuario.
-     </p>
+        Antes de transformar as listas, devemos realizar a conversão de EnderecoDTO e TelefoneDTO da mesma forma que
+        fazemos para a entidade Usuario.
+    </p>
 
-     <div class="image-topic">
-        <img src="/posts/postss/images/springConverter/convertendoTelefoneeEndereco.png" alt="">
-    </div>
->
-
-     <p class="description-topic">
-        Criamos um método que retorna uma lista de Endereco a partir de uma lista de EnderecoDTO. Utilizamos Collection.stream() para mapear cada objeto da lista de EnderecoDTO para a entidade Endereco, utilizando o método de conversão criado anteriormente:
-      </p>
-
-     <div class="image-topic">
-        <img src="/posts/postss/images/springConverter/ListaEnderecoDTOParaListaEndereco.png" alt="">
-    </div>
-
-    <p class="description-topic">
-        Para a lista de TelefoneDTO, podemos utilizar um foreach para realizar a conversão. Embora este processo utilize mais linhas de código, ele torna a lógica mais clara:
-
-     </p>
     <div class="image-topic">
-        <img src="/posts/postss/images/springConverter/ListaTelefoneDTOParaListaTelefone.png" alt="">
+        <img src="/postss/images/springConverter/convertendoTelefoneeEndereco.png" alt="">
+    </div>
+    >
+
+    <p class="description-topic">
+        Criamos um método que retorna uma lista de Endereco a partir de uma lista de EnderecoDTO. Utilizamos
+        Collection.stream() para mapear cada objeto da lista de EnderecoDTO para a entidade Endereco, utilizando o
+        método de conversão criado anteriormente:
+    </p>
+
+    <div class="image-topic">
+        <img src="/postss/images/springConverter/ListaEnderecoDTOParaListaEndereco.png" alt="">
+    </div>
+
+    <p class="description-topic">
+        Para a lista de TelefoneDTO, podemos utilizar um foreach para realizar a conversão. Embora este processo utilize
+        mais linhas de código, ele torna a lógica mais clara:
+
+    </p>
+    <div class="image-topic">
+        <img src="/postss/images/springConverter/ListaTelefoneDTOParaListaTelefone.png" alt="">
     </div>
 
 
     <p class="description-topic">
-        Por fim, no método principal de conversão (usuarioDTOParaUsuario), utilizamos os métodos criados para converter as listas:
-     </p>
+        Por fim, no método principal de conversão (usuarioDTOParaUsuario), utilizamos os métodos criados para converter
+        as listas:
+    </p>
 
-     <div class="image-topic">
-        <img src="/posts/postss/images/springConverter/salvandoAsListas.png" alt="">
+    <div class="image-topic">
+        <img src="/postss/images/springConverter/salvandoAsListas.png" alt="">
     </div>
 
     <p class="description-topic">
-        ara converter de entidade para DTO, basta alterar o retorno e os métodos utilizados na conversão. Em vez de transformar um UsuarioDTO em Usuario, faremos o inverso, garantindo que os atributos da entidade sejam corretamente mapeados para o DTO correspondente.
-     </p
+        Para converter de entidade para DTO, basta alterar o retorno e os métodos utilizados na conversão. Em vez de
+        transformar um UsuarioDTO em Usuario, faremos o inverso, garantindo que os atributos da entidade sejam
+        corretamente mapeados para o DTO correspondente.
+    </p 
 </body>
 </html>
