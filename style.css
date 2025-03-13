@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #93B27E;
+}
+
+.main-title {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 100px;
+    text-align: center;
+    color: white;
+}
+
+.main-description {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 25px;
+    text-align: left;
+    padding: 20px;
+    margin-top: 120px;
+}
+
+.github {
+    font-family: "Montserrat Alternates", sans-serif;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 18%;
+    color: black;
+}
+
+/* Estilos do menu lateral */
+.menu-toggle {
+    display: none;
+}
+
+.menu-label {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #4F554B;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background: #4F554B;
+    padding-top: 60px;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.menu a {
+    font-family: "Montserrat Alternates", sans-serif;
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    margin-top: 4px;
+}
+
+.menu a:hover {
+    background: #4F554B;
+}
+
+.menu-toggle:checked ~ .menu {
+    left: 0;
+}
